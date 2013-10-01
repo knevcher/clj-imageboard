@@ -12,17 +12,15 @@
 
 (defn destroy []
   (println "clj-imageboard is shutting down"))
-  
+
 (defroutes app-routes
   (route/resources "/")
   (route/not-found "Not Found"))
 
 (def app (handler/site (routes home-routes app-routes)))
 
-(def war-handler 
-  (-> app    
-    (wrap-resource "public") 
+(def war-handler
+  (-> app
+    (wrap-resource "public")
     (wrap-base-url)
     (wrap-file-info)))
-  
-
